@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import defaultProjects from "@/components/PortfolioGallery";
+import { defaultProjects } from "@/components/PortfolioGallery";
 
 const CaseStudy = () => {
   const { id } = useParams();

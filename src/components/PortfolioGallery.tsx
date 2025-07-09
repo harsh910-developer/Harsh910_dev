@@ -319,7 +319,7 @@ const ProjectCard = ({ project, onViewCaseStudy }: { project: Project; onViewCas
 };
 
 // Default projects data
-const defaultProjects: Project[] = [
+export const defaultProjects: Project[] = [
   {
     id: "proj-graphic-designer",
     title: "Graphic Designer Portfolio",

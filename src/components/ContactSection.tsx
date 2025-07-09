@@ -398,7 +398,6 @@ const ContactSection = () => {
                       key={index}
                       className={`flex items-center group p-3 rounded-lg hover:bg-muted/50 transition-all duration-300 ${item.isEmail ? 'cursor-pointer' : ''}`}
                       whileHover={{ x: 5 }}
-                      transition={{ duration: 0.2 }}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 + index * 0.1 }}
