@@ -64,6 +64,13 @@
       --input: 217.2 32.6% 17.5%;
       --ring: 212.7 26.8% 83.9%;
     }
+
+    html {
+      font-family: 'Roboto', system-ui, sans-serif;
+    }
+    h1, h2, h3, h4, h5, h6, .font-heading {
+      font-family: 'Poppins', system-ui, sans-serif;
+    }
   }
 
   @layer base {
@@ -74,3 +81,26 @@
       @apply bg-background text-foreground;
     }
   }
+
+html, body {
+  background-color: #fdf6f0;
+}
+.dark html, .dark body {
+  background-color: #10131a;
+}
+
+.animated-highlight {
+  background: linear-gradient(90deg, #06b6d4, #22d3ee, #a21caf, #f472b6, #f59e42, #06b6d4);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animated-gradient 2s linear infinite alternate;
+}
+@keyframes animated-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}

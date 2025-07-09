@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://harshfreelancer.com/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Allow important pages
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /portfolio
+Allow: /contact
+
+# Crawl delay (optional)
+Crawl-delay: 1
