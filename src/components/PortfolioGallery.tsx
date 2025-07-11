@@ -191,39 +191,59 @@ const ProjectCard = ({ project, onViewCaseStudy }: { project: Project; onViewCas
       }}
       className="group"
     >
-      <Card className="h-full flex flex-col overflow-hidden border bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500">
-        <div className="relative aspect-video overflow-hidden">
+      <Card className="h-[520px] flex flex-col overflow-hidden border bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500">
+        <div className="relative aspect-video min-h-[180px] max-h-[180px] overflow-hidden group">
           <LazyImage
             src={project.image}
             alt={`${project.title} - ${project.description}`}
             className="w-full h-full object-cover"
             whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
           />
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            initial={{ opacity: 0 }}
-            whileHover={{ opacity: 1 }}
-          />
-        </div>
-        <CardHeader>
-          <div className="flex justify-between items-start">
-            <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
-              {project.title}
-            </CardTitle>
-            <Badge
-              variant="outline"
-              className="capitalize group-hover:border-primary/50 transition-colors duration-300"
-            >
-              {project.category}
-            </Badge>
+          {/* Hover overlay with action buttons */}
+          <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+            <div className="flex gap-4">
+              <Button
+                asChild
+                variant="default"
+                className="px-4 py-2 text-base font-semibold"
+              >
+                <a href={project.link} target="_blank" rel="noopener noreferrer">
+                  View Project
+                </a>
+              </Button>
+              <Button
+                variant="secondary"
+                className="px-4 py-2 text-base font-semibold"
+                onClick={onViewCaseStudy}
+              >
+                View Case Study
+              </Button>
+            </div>
           </div>
-          <CardDescription className="mt-2 leading-relaxed">
-            {project.description}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-wrap gap-2 mt-2">
+        </div>
+        <div className="flex flex-col flex-1 overflow-hidden min-h-0">
+          <CardHeader className="pb-2">
+            <div className="flex justify-between items-start">
+              <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300 truncate">
+                {project.title}
+              </CardTitle>
+              <Badge
+                variant="outline"
+                className="capitalize group-hover:border-primary/50 transition-colors duration-300"
+              >
+                {project.category}
+              </Badge>
+            </div>
+            <CardDescription className="mt-2 leading-relaxed line-clamp-2 overflow-hidden">
+              {project.description}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex-1 overflow-hidden min-h-0">
+            {/* Card main content, no tags here */}
+          </CardContent>
+          {/* Tags always visible above testimonial */}
+          <div className="flex flex-wrap gap-2 mt-2 px-6 pb-2">
             {project.tags.map((tag, index) => (
               <motion.div
                 key={index}
@@ -240,11 +260,11 @@ const ProjectCard = ({ project, onViewCaseStudy }: { project: Project; onViewCas
               </motion.div>
             ))}
           </div>
-        </CardContent>
+        </div>
         {project.testimonial && (
-          <CardContent className="border-t pt-4 mt-auto">
+          <CardContent className="border-t pt-4 mt-auto overflow-hidden">
             <motion.div
-              className="flex items-start gap-4"
+              className="flex items-start gap-4 min-h-0 overflow-hidden"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -258,7 +278,7 @@ const ProjectCard = ({ project, onViewCaseStudy }: { project: Project; onViewCas
                   {project.testimonial.name.charAt(0)}
                 </AvatarFallback>
               </Avatar>
-              <div>
+              <div className="min-w-0">
                 <div className="flex items-center mb-1">
                   {[...Array(5)].map((_, i) => (
                     <motion.div
@@ -278,10 +298,10 @@ const ProjectCard = ({ project, onViewCaseStudy }: { project: Project; onViewCas
                     </motion.div>
                   ))}
                 </div>
-                <p className="text-sm italic mb-1 text-muted-foreground">
+                <p className="text-sm italic mb-1 text-muted-foreground line-clamp-2 overflow-hidden">
                   "{project.testimonial.content}"
                 </p>
-                <p className="text-sm font-semibold text-foreground">
+                <p className="text-sm font-semibold text-foreground truncate">
                   {project.testimonial.name}
                   <span className="font-normal text-muted-foreground">
                     , {project.testimonial.role} at{" "}
@@ -292,7 +312,7 @@ const ProjectCard = ({ project, onViewCaseStudy }: { project: Project; onViewCas
             </motion.div>
           </CardContent>
         )}
-        <CardFooter className="mt-auto pt-4 flex gap-2">
+        <CardFooter className="pt-4 flex gap-2 mt-auto">
           <Button
             variant="ghost"
             className="w-1/2 justify-center text-primary hover:text-primary hover:bg-primary/10 group/btn"
@@ -324,7 +344,7 @@ export const defaultProjects: Project[] = [
     id: "proj-graphic-designer",
     title: "Graphic Designer Portfolio",
     description:
-      `A dynamic and visually appealing website for a professional graphic designer, showcasing expertise in logo design, advertisement creation, and UI/UX design. Features include a responsive layout, dynamic content fetching via Supabase, and a streamlined contact form for client inquiries.\n\nAchievements:\n- Increased the designer's brand visibility by 50%.\n- Achieved a 98% performance score on Google Lighthouse.\n- Completed the project within 2 weeks, including testing and deployment.`,
+      "A visually appealing portfolio for a graphic designer, featuring logo, ad, and UI/UX showcases. Responsive, dynamic, and client-focused.",
     category: "web-design",
     image: "/graphic-designer-3.png",
     tags: ["Next.js", "Tailwind CSS", "Supabase", "Vercel", "TinyPNG", "Google Lighthouse"],
@@ -343,7 +363,7 @@ export const defaultProjects: Project[] = [
     id: "proj-1",
     title: "E-commerce Platform",
     description:
-      "A feature-rich online store with a custom CMS and seamless payment integration.",
+      "A modern online store with custom CMS and payment integration. Enhanced user experience and increased conversions.",
     category: "web-design",
     image: "/placeholder.svg",
     tags: ["React", "Node.js", "Stripe", "PostgreSQL"],
@@ -363,7 +383,7 @@ export const defaultProjects: Project[] = [
     id: "proj-2",
     title: "AI Customer Support Bot",
     description:
-      "An intelligent chatbot that handles customer queries 24/7, reducing response times and improving satisfaction.",
+      "24/7 intelligent chatbot for customer queries. Reduces response times and boosts satisfaction.",
     category: "chatbot-dev",
     image: "/placeholder.svg",
     tags: ["Python", "Dialogflow", "Flask", "WebSocket"],
@@ -383,7 +403,7 @@ export const defaultProjects: Project[] = [
     id: "proj-3",
     title: "Corporate Blog & Content Hub",
     description:
-      "A comprehensive content platform with SEO-optimized articles, case studies, and whitepapers.",
+      "SEO-optimized blog and content hub for articles, case studies, and whitepapers. Tripled organic traffic.",
     category: "content-writing",
     image: "/placeholder.svg",
     tags: ["WordPress", "SEO", "Copywriting", "Content Strategy"],
@@ -403,7 +423,7 @@ export const defaultProjects: Project[] = [
     id: "proj-4",
     title: "SaaS Application UI/UX",
     description:
-      "A complete redesign of a SaaS product, focusing on user-centric design and intuitive navigation.",
+      "Redesigned SaaS UI/UX for intuitive navigation and user-centric design. Improved product usability.",
     category: "web-design",
     image: "/placeholder.svg",
     tags: ["Figma", "React", "User Research", "Prototyping"],
@@ -413,7 +433,7 @@ export const defaultProjects: Project[] = [
     id: "proj-5",
     title: "Lead Generation Chatbot",
     description:
-      "A chatbot for a real estate agency that qualifies leads and schedules property viewings.",
+      "Chatbot for real estate lead qualification and scheduling. Streamlined property viewings.",
     category: "chatbot-dev",
     image: "/placeholder.svg",
     tags: ["Rasa", "Python", "Lead Qualification", "Calendly API"],
@@ -423,7 +443,7 @@ export const defaultProjects: Project[] = [
     id: "proj-6",
     title: "Brand Voice & Style Guide",
     description:
-      "Developed a comprehensive brand voice and style guide to ensure consistent messaging across all channels.",
+      "Comprehensive brand voice and style guide for consistent messaging. Enhanced content governance.",
     category: "content-writing",
     image: "/placeholder.svg",
     tags: ["Branding", "Tone of Voice", "Style Guide", "Content Governance"],
@@ -433,7 +453,7 @@ export const defaultProjects: Project[] = [
     id: "shoe-brand-marketing",
     title: "Shoe Brand Marketing Website",
     description:
-      "A sleek and modern marketing website designed for a shoe brand, focusing on responsive design, engaging visuals, and seamless user experience to enhance brand visibility and customer engagement.",
+      "Modern marketing site for a shoe brand. Responsive, engaging, and focused on customer experience.",
     category: "web-design",
     image: "/shoe-brand.png",
     tags: [
@@ -449,7 +469,7 @@ export const defaultProjects: Project[] = [
     id: "interest-hub",
     title: "InterestHub",
     description:
-      `A full-stack web application solving fragmented content discovery for people with shared interests. Traditional platforms are too cluttered or niche, leaving users without dedicated spaces to connect.\n\nInterestHub provides a focused platform for interest-based communities and personalized content feeds.\n\nKey Features:\n- Community creation and discovery\n- Personalized content feed\n- Real-time discussions\n- User authentication\n- Responsive design\n\nAchievements:\n- React + TypeScript + Supabase\n- 95%+ Lighthouse score\n- Deployed on Vercel`,
+      "Full-stack platform for interest-based communities. Personalized feeds, real-time chat, and responsive design.",
     category: "web-design",
     image: "/interest-hub.png",
     tags: [
@@ -470,6 +490,16 @@ export const defaultProjects: Project[] = [
       content: "InterestHub exceeded our expectations! The platform is intuitive, fast, and perfectly captures the essence of community building. Harsh delivered a production-ready application that our users love.",
       rating: 5,
     },
+  },
+  {
+    id: "empire-resort",
+    title: "Empire Resort",
+    description:
+      "Luxury resort website with elegant design and seamless booking. Showcases amenities and attracts high-end clients.",
+    category: "web-design",
+    image: "/empire-resort.png",
+    tags: ["Next.js", "Tailwind CSS", "Vercel", "Responsive Design"],
+    link: "https://empire-resort.vercel.app/",
   },
 ];
 
