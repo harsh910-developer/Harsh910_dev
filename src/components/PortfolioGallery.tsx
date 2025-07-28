@@ -501,6 +501,26 @@ export const defaultProjects: Project[] = [
     tags: ["Next.js", "Tailwind CSS", "Vercel", "Responsive Design"],
     link: "https://empire-resort.vercel.app/",
   },
+  {
+    id: "de-smakelijke-keuken",
+    title: "De Smakelijke Keuken – Restaurant Landing Page",
+    description:
+      "A sleek, SEO-optimized restaurant website built with Next.js and Tailwind CSS. Includes Calendly booking, contact form, Google Maps, and analytics tracking.",
+    category: "web-design",
+    image: "/de-smakelijke-keuken.png",
+    tags: [
+      "Next.js",
+      "Tailwind CSS",
+      "SEO",
+      "Calendly",
+      "Restaurant Website",
+      "Google Analytics",
+      "Web Development",
+      "Responsive Design"
+    ],
+    link: "https://de-smakelijke-keuken.vercel.app/",
+    // No testimonial provided
+  },
 ];
 
 export default PortfolioGallery;
